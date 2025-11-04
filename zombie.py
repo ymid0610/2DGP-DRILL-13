@@ -68,3 +68,6 @@ class Zombie:
     def half_size(self):
         self.draw_w //= 2
         self.draw_h //= 2
+
+        if self.draw_w <= 50 or self.draw_h <= 50:
+            game_world.remove_object(self)
