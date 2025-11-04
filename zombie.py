@@ -59,3 +59,9 @@ class Zombie:
     def handle_event(self, event):
         pass
 
+    def handle_collision(self, group, other):
+        if group == 'zombie:ball':
+            self.half_size()
+
+    def half_size(self):
+        pass
