@@ -35,9 +35,8 @@ class Zombie:
         self.dir = random.choice([-1,1])
         self.draw_w, self.draw_h = 200, 200
 
-
     def get_bb(self):
-        return self.x - 100, self.y - 100, self.x + 100, self.y + 100
+        return self.x - (self.draw_w / 2), self.y - (self.draw_h / 2), self.x + (self.draw_w / 2), self.y + (self.draw_h / 2)
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
@@ -68,6 +67,7 @@ class Zombie:
     def half_size(self):
         self.draw_w //= 2
         self.draw_h //= 2
+        self.y -= self.draw_h / 2
 
         if self.draw_w <= 50 or self.draw_h <= 50:
             game_world.remove_object(self)
