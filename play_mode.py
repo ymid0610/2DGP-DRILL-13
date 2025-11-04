@@ -36,8 +36,19 @@ def init():
     game_world.add_objects(balls, 1)
 
     game_world.add_collision_pair('boy:ball', boy, None)
+    game_world.add_collision_pair('boy:zombie', boy, None)
+
+    global zombies
+    zombies = [Zombie() for _ in range(4)]
+    game_world.add_objects(zombies, 1)
+
+    for zombie in zombies:
+        game_world.add_collision_pair('boy:zombie', None, zombie)
+        game_world.add_collision_pair('zombie:ball', zombie, None)
+
     for ball in balls:
         game_world.add_collision_pair('boy:ball', None, ball)
+        game_world.add_collision_pair('zombie:ball', None, ball)
 
 def update():
     game_world.update()
